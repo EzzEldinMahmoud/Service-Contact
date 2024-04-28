@@ -41,8 +41,8 @@ function App() {
     };
     const [show,setshow] = useState(false);
     const [showSuccess,setshowSuccess] = useState(false);
-    const fblink = '';
-    const whatsapplink = '';
+    const fblink = 'https://www.facebook.com/share/vyzzTCB3uvXmQ7fY/?mibextid=qi2Omg';
+    const whatsapplink = 'https://wa.me/message/2YD7UFDJCRXTE1';
     const location = 'Suez, Ain Sokhna';
     const phoneNumber = ' +201090196335\n +201222271310\n +201226881314';
     const dataList = [
