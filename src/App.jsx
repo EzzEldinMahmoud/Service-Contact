@@ -44,14 +44,14 @@ function App() {
     const fblink = '';
     const whatsapplink = '';
     const location = 'Suez, Ain Sokhna';
-    const phoneNumber = '+201226881314';
+    const phoneNumber = ' +201090196335\n +201222271310\n +201226881314';
     const dataList = [
         {
             "title":"Buildings Repair and maintenance\n",
             "description":"Revitalize your industrial buildings and factories affordably with our expert repair services. we're committed to optimizing your spaces while minimizing costs. Our tailored solutions are designed to ensure that your infrastructure remains robust and functional without straining your budget,\
             With a focus on efficiency and quality, our experienced team employs advanced techniques and industry best practices to deliver exceptional results. Whether it\'s routine maintenance or major repairs, we\re dedicated to providing cost-effective solutions that meet your needs and exceed your expectations\
             Don\'t let repair expenses hold you back. Trust in our reliable services to enhance the longevity and performance of your industrial facilities while keeping costs down. Contact us today to discover how we can help you achieve your goals without breaking the bank.",
-            "image":require("./assets/images/buildingmaintance/card1.jpg")
+            "image":"https://lh3.googleusercontent.com/p/AF1QipMUyz_47U1j3mpsKkoUOA7TDgLmalrZh2lig-M8=w1080-h608-p-no-v0"
         },
         {
             "title":"Labor And Tools\n Procurement",
@@ -65,7 +65,7 @@ function App() {
             "description":"Efficiently repair and maintain your air conditioning system while minimizing costs with our services. we prioritize affordability without compromising on quality. Our team is dedicated to providing cost-effective solutions tailored to your HVAC needs.\
             With years of experience and expertise, we ensure that your air conditioning system operates at peak performance without breaking the bank. Whether it's routine maintenance or emergency repairs, we're committed to delivering high-quality service at a competitive price.\
             Trust us to keep your space comfortable while saving you money. Contact us today to learn more about how our services can benefit you and your budget.",
-            "image":require("./assets/images/conditioning/conditioning.jpg")
+            "image":"https://www.thegenaugroup.com/wp-content/uploads/2021/08/commercial-property-maintenance.jpg"
         }
     ]
     return (
