@@ -1,0 +1,125 @@
+import React, { useRef, useState } from 'react';
+import './App.css';
+import logo from './assets/logo.jpeg';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Button  from '@mui/material/Button';
+import { Alert } from '@mui/material';
+import { FaFacebookSquare } from "react-icons/fa";
+import { FaWhatsappSquare } from "react-icons/fa";
+import { MdLocationCity } from "react-icons/md";
+import { FaSquarePhone } from "react-icons/fa6";
+import emailjs from '@emailjs/browser';
+function App() {
+  const form = useRef();
+    const sendEmail = (e) => {
+      e.preventDefault();
+      emailjs
+        .sendForm('service_h9vrh1p', 'template_6pg3266',form.current ,{ publicKey: 'GkXg11axyk3Ers9JG'})
+        .then(
+          () => {
+            setshowSuccess(true);
+            setTimeout(()=>{
+              setshowSuccess(false);
+            },4000)
+          }
+        );
+    };
+    const [show,setshow] = useState(false);
+    const [showSuccess,setshowSuccess] = useState(false);
+    const fblink = '';
+    const whatsapplink = '';
+    const location = 'Suez, Ain Sokhna';
+    const phoneNumber = '+201226881314';
+    const dataList = [
+        {
+            "title":"Buildings Repair and maintenance\n",
+            "description":"Revitalize your industrial buildings and factories affordably with our expert repair services. we're committed to optimizing your spaces while minimizing costs. Our tailored solutions are designed to ensure that your infrastructure remains robust and functional without straining your budget,\
+            With a focus on efficiency and quality, our experienced team employs advanced techniques and industry best practices to deliver exceptional results. Whether it\'s routine maintenance or major repairs, we\re dedicated to providing cost-effective solutions that meet your needs and exceed your expectations\
+            Don\'t let repair expenses hold you back. Trust in our reliable services to enhance the longevity and performance of your industrial facilities while keeping costs down. Contact us today to discover how we can help you achieve your goals without breaking the bank.",
+            "image":require("./assets/images/buildingmaintance/card1.jpg")
+        },
+        {
+            "title":"Labor And Tools\n Procurement",
+            "description":"Acquire a skilled labor force affordably through our services, where we take immense pride in our teams. we specialize in delivering cost-effective solutions tailored to your workforce needs. Our commitment to excellence ensures that you receive top-notch personnel without overspending.\
+            With a focus on efficiency and quality, our dedicated teams are equipped with the expertise and resources to meet your requirements. Whether it\'s staffing for short-term projects or long-term placements, we strive to minimize costs while maximizing the caliber of our workforce.\
+            Rely on us to procure the talent you need without compromising on quality. Explore how our services can help you achieve your staffing goals while maintaining your budget. Connect with us today to experience the difference.",
+            "image":require("./assets/images/teams/teamimg.jpg")
+        },
+        {
+            "title":"Air Conditioning system\n Repair and maintenance\n",
+            "description":"Efficiently repair and maintain your air conditioning system while minimizing costs with our services. we prioritize affordability without compromising on quality. Our team is dedicated to providing cost-effective solutions tailored to your HVAC needs.\
+            With years of experience and expertise, we ensure that your air conditioning system operates at peak performance without breaking the bank. Whether it's routine maintenance or emergency repairs, we're committed to delivering high-quality service at a competitive price.\
+            Trust us to keep your space comfortable while saving you money. Contact us today to learn more about how our services can benefit you and your budget.",
+            "image":require("./assets/images/conditioning/conditioning.jpg")
+        }
+    ]
+    return (
+        <div className="website-body">
+            <div className='h-14 w-full flex flex-start items-center justify-between bg-white shadow-md pl-5 pr-5'>
+                <p className='m-2 p-2 font-serif font-semibold text-center flex-row flex items-center justify-center'><img alt='logo' className='h-10 w-10 rounded-full mr-3' src={logo}/>Pioneer for maintenance <br />and building services</p>
+                <div className='flex flex-row space-x-10 font-serif font-semibold '>
+                    <a href="#services" className='hover:bg-slate-300 h-10 p-2 justify-center items-center cursor-pointer rounded-md'>Services</a>
+                    <a href="#contact" className='hover:bg-slate-300 h-10 p-2 justify-center items-center cursor-pointer rounded-md'>Contact us</a>
+                </div>
+            </div>
+            <div className='h-[35rem] w-full flex flex-col justify-start items-center relative ' id="heroslide">
+            </div>
+            <p style={{fontFamily:'Poppins'}} className=' text-center leading-normal p-2 font-black text-xl md:text-2xl lg:text-4xl text-white absolute top-[12rem] left-0 right-0 shadow-sm'>Welcome to Pioneer for maintenance and building services, <br /> your partner in building maintenance and repair <br /> Specializing in factories and businesses.</p>
+            <div className='flex flex-col w-full justify-center items-center' id='services'>
+                <strong className='font-bold text-4xl lg:text-6xl mb-10 mt-5' style={{fontFamily:'Poppins'}}>Services</strong>
+                <div className='grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center space-x-10 p-5 space-y-5'>
+                    {
+                        dataList.map((value: any) => {
+                          return (
+                              <Card sx={{ minWidth: 300 ,minHeight: 500 }} key={value.title}>
+                              <CardMedia
+                                component="img"
+                                height="500"
+                                image={value.image}
+                                alt={value.title}
+                              />
+                              <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                  {value.title}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                  {value.description}
+                                </Typography>
+                              </CardContent>
+                            </Card>
+                          );
+                        })
+                    }
+                </div>
+            </div>
+            <div className='h-[35rem] w-full  shadow-full p-2' style={{fontFamily:'Poppins'}} id='contact'>
+            <p  className='m-2 p-2 font-semibold text-center flex-row flex items-center justify-start '><img alt='logo' className='h-10 w-10 rounded-full mr-3' src={logo}/>Pioneer for maintenance <br />and building services</p>
+                <div className='w-full'>
+                  <p className='text-2xl  font-bold mb-5'>Contact us using Email</p>
+                    <form className='flex flex-col space-y-6 w-full md:w-5/6' ref={form} onSubmit={sendEmail}>
+                        <TextField id="outlined-basic" type='text' label="Name" variant="outlined" name='user_name' required/>
+                          <TextField id="outlined-basic" type="email" label="Email" variant="outlined" name='user_email'  required/>
+                          <textarea  className="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border border-gray-300  " placeholder="Write your thoughts here..." name='description' required/>
+                          <div className='justify-end items-end'>
+                              <Button variant="contained" type='submit'>Send</Button>
+                          </div>
+                    </form>
+                    {show ? <Alert severity="error" className='mt-5'>Please Enter valid Information.</Alert> : <></>}
+                    {showSuccess ? <Alert severity="success" className='mt-5'>sent.</Alert> : <></>}
+                </div>
+                <div className='mt-5'>
+                <a href={fblink} className='flex flex-row items-center text-xl' style={{fontFamily:'Poppins'}} target='_blank' rel='noreferrer'><FaFacebookSquare size={60}/> Facebook</a>
+                <a href={whatsapplink} className='flex flex-row items-center text-xl' style={{fontFamily:'Poppins'}} target='_blank' rel='noreferrer'><FaWhatsappSquare size={60}/>whatsapp</a>
+                <a className='flex flex-row items-center text-xl' style={{fontFamily:'Poppins'}}><FaSquarePhone size={60}/> {phoneNumber}</a>
+                <a className='flex flex-row items-center text-xl' style={{fontFamily:'Poppins'}} href={`https://maps.google.com?q=${location}`} target='_blank' rel='noreferrer'><MdLocationCity size={60}/> {location}</a>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default App;
