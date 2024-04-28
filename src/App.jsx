@@ -7,14 +7,25 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button  from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import { Alert } from '@mui/material';
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { MdLocationCity } from "react-icons/md";
 import { FaSquarePhone } from "react-icons/fa6";
+import { RxHamburgerMenu } from "react-icons/rx";
 import emailjs from '@emailjs/browser';
 function App() {
   const form = useRef();
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
     const sendEmail = (e) => {
       e.preventDefault();
       emailjs
@@ -62,8 +73,27 @@ function App() {
             <div className='h-14 w-full flex flex-start items-center justify-between bg-white shadow-md pl-5 pr-5'>
                 <p className='m-2 p-2 font-serif font-semibold text-center flex-row flex items-center justify-center'><img alt='logo' className='h-10 w-10 rounded-full mr-3' src={logo}/>Pioneer for maintenance <br />and building services</p>
                 <div className='flex flex-row space-x-10 font-serif font-semibold '>
-                    <a href="#services" className='hover:bg-slate-300 h-10 p-2 justify-center items-center cursor-pointer rounded-md'>Services</a>
-                    <a href="#contact" className='hover:bg-slate-300 h-10 p-2 justify-center items-center cursor-pointer rounded-md'>Contact us</a>
+                  <Button
+                      id="basic-button"
+                      aria-controls={open ? 'basic-menu' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? 'true' : undefined}
+                      onClick={handleClick}
+                    >
+                      <RxHamburgerMenu size={35} color='black'/>
+                    </Button>
+                    <Menu
+                      id="basic-menu"
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                      MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                      }}
+                    >
+                      <MenuItem onClick={handleClose}><a href="#services" className='hover:bg-slate-300 h-10 p-2 justify-center items-center cursor-pointer rounded-md'>Services</a></MenuItem>
+                      <MenuItem onClick={handleClose}><a href="#contact" className='hover:bg-slate-300 h-10 p-2 justify-center items-center cursor-pointer rounded-md'>Contact us</a></MenuItem>
+                    </Menu>
                 </div>
             </div>
             <div className='h-[35rem] w-full flex flex-col justify-start items-center relative ' id="heroslide">
@@ -73,7 +103,7 @@ function App() {
                 <strong className='font-bold text-4xl lg:text-6xl mb-10 mt-5' style={{fontFamily:'Poppins'}}>Services</strong>
                 <div className='grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center space-x-10 p-5 space-y-5'>
                     {
-                        dataList.map((value: any) => {
+                        dataList.map((value) => {
                           return (
                               <Card sx={{ minWidth: 300 ,minHeight: 500 }} key={value.title}>
                               <CardMedia
